@@ -1167,6 +1167,8 @@ Mysql的B+树索引原理 11.03
 
 ## 11-16：星期三
 
+**编码以明志 调试而致远**
+
 做英语六级、背单词 9.48
 
 上web 11.35
@@ -1177,3 +1179,22 @@ Mysql的B+树索引原理 11.03
 
 日志系统01 15.40
 
+自省 17.05
+
+英语六级18选10 19.13
+
+计网FTP、DNS 19.40
+
+树的遍历 21.07
+
+看JSON的一些实现 23.29
+
+学习Rust的所有权和借用 0.17
+
+https://www.liaoxuefeng.com/article/994977272296736
+
+https://blog.csdn.net/u011341856/article/details/108797920
+
+https://www.cnblogs.com/nullllun/p/8358146.html
+
+https://github.com/nlohmann/json
