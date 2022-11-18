@@ -1198,3 +1198,23 @@ https://blog.csdn.net/u011341856/article/details/108797920
 https://www.cnblogs.com/nullllun/p/8358146.html
 
 https://github.com/nlohmann/json
+
+## 11-17 星期四
+
+一直没有连上Ubuntu的5005端口 16.07
+
+看了Reactor的实现 17.46
+
+英语 19.15-20.42
+
+## 11-18：星期五
+
+计网实验 12.05
+
+计网作业 14.17
+
+ping的原理小林coding 14.36
+
+界面设计 16.14
+
+看完了湖科大教书匠的计网视频 从7-12到11-18 17.06
