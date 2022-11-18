@@ -1218,3 +1218,11 @@ ping的原理小林coding 14.36
 界面设计 16.14
 
 看完了湖科大教书匠的计网视频 从7-12到11-18 17.06
+
+整理计网笔记到CSDN 18.40
+
+英语翻译 19.40
+
+写LeetCode贪心：wiggle Subsuquence:https://leetcode.cn/problems/wiggle-subsequence/description/ 20.48
+
+写Rusrlings 21.33

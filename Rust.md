@@ -51,3 +51,32 @@ fn string_uppercase(mut data: String) {//拥有所有权
 ```
 
 2、现在是第二天0.15，要睡了，就看了这一个知识点
+
+## 11-18 星期五
+
+1、数组切片：x..y 表示 [x, y) 的数学含义。 ..  两边可以没有运算数。
+
+2、[用模式匹配解构元组](https://course.rs/basic/compound-type/tuple.html#用模式匹配解构元组)
+
+```rust
+fn main() {
+    let tup = (500, 6.4, 1);
+
+    let (x, y, z) = tup;
+
+    println!("The value of y is: {}", y);
+}
+//The value of y is: 6.4
+```
+
+3、结构体，和 JavaScript 一样的。
+
+```rust
+struct User {
+    active: bool,
+    username: String,
+    email: String,
+    sign_in_count: u64,
+}
+```
+
