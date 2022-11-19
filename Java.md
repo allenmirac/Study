@@ -1124,3 +1124,7 @@ public class HelloJDBC {
 }
 ```
 
+## Array、ArrayList、数组、Arrays的简单区分
+
+https://blog.csdn.net/weixin_44844089/article/details/103594587
+

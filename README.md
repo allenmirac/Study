@@ -1226,3 +1226,19 @@ ping的原理小林coding 14.36
 写LeetCode贪心：wiggle Subsuquence:https://leetcode.cn/problems/wiggle-subsequence/description/ 20.48
 
 写Rusrlings 21.33
+
+## 11-19：星期六
+
+今天正好也是周末了，顺便写一下自我的总结吧：
+
+7-11--8-27：是在家里的暑假阶段，**在家里总是没有动力**，看了码农的教程、计网、Json、Redis教程，、Mysql，大部分时间都是在实现Socket编程，都是在打基础。
+
+9-2--9-25：学习基础的爬虫，码农的C++教程，码农的教程。
+
+9-26-11-12：TcpServer，期间准备数学竞赛（好难）。 11-19 10.24
+
+终于实现了群聊功能 15.19
+
+Java复习异常机制、抽象类、arraycopy() 17.43
+
+英语单词、翻译 19.48
