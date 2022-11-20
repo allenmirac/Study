@@ -78,5 +78,33 @@ struct User {
     email: String,
     sign_in_count: u64,
 }
+let user=User{
+    active:true,
+    username:String::from("John"),
+    email:String::from("123@qq.com"),
+    sign_in_count:123;
+}
 ```
+
+## 11-20：星期天
+
+1、利用已有Struct创建新Struct
+
+2、Struct's implement：https://www.modb.pro/db/248301，如果创建失败：`panic!("error");`
+
+3、match ==> c/c++ switch
+
+```rust
+fn process(&mut self, message: Message) {
+        // TODO: create a match expression to process the different message variants
+        match message {
+            Message::Echo(str) => self.echo(str),
+            Message::Move(p) => self.move_position(p),
+            Message::Quit => self.quit(),
+            Message::ChangeColor(color) => self.change_color(color),
+        }
+    }
+```
+
+
 

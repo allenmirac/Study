@@ -2,7 +2,7 @@
 /*
  * @Author: hzy
  * @Date: 2022-9-11 16.35
- * @LastEditTime: 2022-11-13 16.05
+ * @LastEditTime: 2022-11-20 13.12
  * @LastEditors: hzy
  */
 ```
@@ -183,7 +183,29 @@ public class ImportTest {
 ## Java提供的常用工具类
 
 - Math：数学计算
+
 - Random：生成伪随机数
+
+    - ```java
+        public class TestAll {
+            public static void main(String... args) {
+                Random random = new Random(22);
+                Random random1  = new Random(21);// 如果是同一个种子，生成的随机数字是相同的
+                System.out.println(random1.nextInt(10)+" "+random.nextInt());//nextInt(10)==>[0, 10);
+                System.out.println(random1.nextBoolean()+" "+random.nextBoolean());
+                System.out.println(random1.nextDouble()+ " "+random.nextDouble());
+            }
+        }
+        @Test
+            public void RandomNextIntDemo3(){
+                Random r = new Random();
+                int n3 = r.nextInt(11);//左闭右开
+                int n4 = Math.abs(r.nextInt() % 11);
+                System.out.println("n3:"+n3);
+                System.out.println("n4:"+n4);
+            }
+        ```
+
 - SecureRandom：生成安全的随机数
 
 ## 继承
