@@ -2,7 +2,7 @@
 /*
  * @Author: hzy
  * @Date: 2022-9-11 16.35
- * @LastEditTime: 2022-11-20 13.12
+ * @LastEditTime: 2022-11-23 18.18
  * @LastEditors: hzy
  */
 ```
@@ -791,7 +791,7 @@ public void readFile03(){
     String path = "D:\\AA-Idea\\JULItheima\\src\\main\\java\\com\\JavaCour\\123.html";
     File file = new File("path");
     byte[] b = "欢迎welcome".getBytes();
-    System.out.println(b.length);//14个字节，一个汉字三个字节：6+8
+    System.out.println(b.length);//13个字节，一个汉字三个字节：6+7
     try{
         FileOutputStream out = new FileOutputStream(file);
         out.write(b);//将b写入流中
