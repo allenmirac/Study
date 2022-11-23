@@ -671,6 +671,8 @@ Map也属于Collection，都是存储数据的。
 
 ## Java Swing的简单使用
 
+Java Swing有5种布局方式：BorderLayout（边界布局）、FlowLayout（流式布局）、BoxLayout（盒子布局）、GridLayout（网格布局）、null（空布局）
+
 使用panel和Container显示一些控件，下面显示的是用户名和密码的简单的验证。
 
 ```java
@@ -1149,4 +1151,10 @@ public class HelloJDBC {
 ## Array、ArrayList、数组、Arrays的简单区分
 
 https://blog.csdn.net/weixin_44844089/article/details/103594587
+
+## javap的使用
+
+https://www.cnblogs.com/baby123/p/10756614.html
+
+
 

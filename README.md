@@ -1256,3 +1256,49 @@ Java复习 10-10-13.13
 操作系统王道54个选择题 16.30
 
 英语听力 17.12
+
+英语单词 20.00
+
+考研复试经验帖子 21.04
+
+QT qq01 21.38
+
+## 11-21：星期一
+
+上午没有看
+
+qt聊天小程序：QAbstractSocket::connectToHost() called when already looking up or connecting/connected to "xxx"出问题了  15.21
+
+听力 16.34
+
+条款29 16.57
+
+复习到了Java事件监听、键盘事件监听 20.57
+
+## 11-22：星期二
+
+思考研究方向 11.00
+
+QT连不上 12.01
+
+真的会哭死，把socketDescriptor参数类型改成qintptr，就连好了，离大谱 14.08
+
+把chatRoom1上传到github，release命令：windeployqt xxx.exe 16.20
+
+复习到Swing监听键盘事件：ctrl，e.getModifiers()==2
+
+## 11-23：星期三
+
+阅读 9.52
+
+Filter、Jsp 11.40
+
+OS：进程间的通信，线程的引入 14.20
+
+内存检测王者之剑—valgrind 14.47
+
+下载了handy网络库，一点也看不懂😭😭，还得看书 15.04
+
+看TCP/IP网络编程：IP地址转换，网络字节序与本地字节序 15.51
+
+Reactor实现 17.09

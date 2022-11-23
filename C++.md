@@ -740,5 +740,7 @@ int main(){
 error: conversion from ‘void (Add::*)(int)’ to non-scalar type ‘std::function<void(const Add&, int)>’ requested
 ```
 
+## dup、dup2函数
 
+https://blog.csdn.net/bian_qing_quan11/article/details/73304911
 
