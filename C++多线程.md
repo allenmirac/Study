@@ -258,6 +258,63 @@ while(!stop_waiting()){
 
 wait():1、将互斥锁加锁，2、阻塞等待线程被唤醒，3、给互斥锁解锁。
 
+让两个线程交替打印1，2，利用两个条件变量
+
+```c++
+#include <iostream>
+#include <pthread.h>
+#include <condition_variable>
+#include <thread>
+#include <mutex>
+#include <unistd.h>
+
+using namespace std;
+mutex m;
+std::condition_variable cv1, cv2;
+bool c=true;
+#define NUM_THREAD 5
+//class Print{
+//public:
+void printA(){
+    for(int i=0; i<7; i++) {
+        std::unique_lock<std::mutex> lk(m);
+        cv1.wait(lk, [] { return c; });
+        sleep(1);
+        cout << 1 << " ";
+        c = false;
+        cv2.notify_one();
+    }
+}
+void printB(){
+    for(int i=0; i<7; i++) {
+        std::unique_lock<std::mutex> lk(m);
+        cv2.wait(lk, [] { return !c; });
+        cout << 2 << endl;
+        sleep(0.1);
+        c = true;
+        cv1.notify_one();
+    }
+}
+
+void my(){
+    cout<<"start.........."<<endl;
+    //pthread_exit(0);
+    return ;
+}
+int main(){
+    //thread t1(my);
+    //Print a=new Print();
+    thread t2(printA);
+    thread t3(printB);
+
+    t2.join();
+    t3.join();
+//    signal(SIGINT, []{my();});
+    //t1.join();
+    return 0;
+}
+```
+
 ## thread::hardware_concurrency()
 
 `thread::hardware_concurrency()`可以获取到当前硬件支持多少个线程并行执行。

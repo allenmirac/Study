@@ -500,7 +500,7 @@ Pattern类用于创建一个正则表达式,也可以说创建一个匹配模式
 Pattern.matcher(CharSequence input)返回一个Matcher对象.
 Matcher类的构造方法也是私有的,不能随意创建,只能通过Pattern.matcher(CharSequence input)方法得到该类的实例。
 
-Matcher有两个常用的方法：find(), matches(), start(), end(), group().
+Matcher有几个常用的方法：find(), matches(), start(), end(), group().
 
 find()：是否存在与该模式匹配的下一个子序列。简单来说就是在**字符某部分匹配上**模式就会返回true，同时匹配位置会记录到当前位置，再次调用时从该处匹配下一个。
 
