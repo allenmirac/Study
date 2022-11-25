@@ -367,7 +367,7 @@ GitHub项目：有四百多行代码，[红黑树的实现](https://github.com/w
 
 ### 排序算法
 
-#### 冒泡排序
+#### 1、冒泡排序
 
 ```c++
 template<typename T>
@@ -383,7 +383,7 @@ void BubbleSort(T a[], int len){
 }
 ```
 
-#### 选择排序
+#### 2、选择排序
 
 ```c++
 template<typename T>
@@ -400,7 +400,7 @@ void SelectSort(T arr[], int len){
 }
 ```
 
-#### 插入排序
+#### 3、插入排序
 
 ```C++
 template<typename T>
@@ -417,7 +417,7 @@ void InsertSort(T arr[], int len){
 }
 ```
 
-#### 希尔排序
+#### 4、希尔排序
 
 ```c++
 template<typename T>
@@ -437,7 +437,7 @@ void ShellSort(T arr[], int len){
 }
 ```
 
-#### 快速排序
+#### 5、快速排序
 
 ```c++
 void quickSort(int a[], int l, int r){
@@ -465,7 +465,7 @@ void quickSort(int a[], int l, int r){
 }
 ```
 
-#### 堆排序
+#### 6、堆排序
 
 
 
@@ -497,7 +497,7 @@ void heap_sort(int arr[], int len){
 }
 ```
 
-#### 归并排序
+#### 7、归并排序
 
 一半一半砍开来，砍成只有两个元素之后，归并。
 
@@ -533,6 +533,90 @@ void merge_sort1(T arr[], int len) {
     delete[] b;
 }
 ```
+
+#### 8、桶排序
+
+将数据放到到各个桶中，在插入数据的时候每个桶的数据保持有序，所以每个桶相当于是一个有序链表。最后将各个桶合并起来，即将各个链表Merge，形成一个有序的整体。
+
+```c++
+#include<iterator>
+#include<iostream>
+#include<vector>
+using namespace std;
+const int BUCKET_NUM = 10;// 桶的个数
+
+/**
+ *链表结构体
+ */
+struct ListNode{
+	explicit ListNode(int i=0):mData(i),mNext(NULL){}
+	ListNode* mNext;
+	int mData;
+};
+
+/**
+ * 插入的时候是有序的，返回值是头节点
+ */
+ListNode* insert(ListNode* head,int val){
+	ListNode dummyNode;
+	ListNode *newNode = new ListNode(val);
+	ListNode *pre,*curr;
+	dummyNode.mNext = head;
+	pre = &dummyNode;
+	curr = head;
+	while(NULL!=curr && curr->mData<=val){
+		pre = curr;
+		curr = curr->mNext;
+	}
+	newNode->mNext = curr;
+	pre->mNext = newNode;
+	return dummyNode.mNext;
+}
+
+/**
+ * 将两个链表合并，合并后仍然保持有序
+  */
+ListNode* Merge(ListNode *head1,ListNode *head2){
+	ListNode dummyNode;
+	ListNode *dummy = &dummyNode;
+	while(NULL!=head1 && NULL!=head2){
+		if(head1->mData <= head2->mData){
+			dummy->mNext = head1;
+			head1 = head1->mNext;
+		}else{
+			dummy->mNext = head2;
+			head2 = head2->mNext;
+		}
+		dummy = dummy->mNext;
+	}
+	if(NULL!=head1) dummy->mNext = head1;
+	if(NULL!=head2) dummy->mNext = head2;
+	
+	return dummyNode.mNext;
+}
+
+/**
+ * 桶排序主体部分
+ */
+void BucketSort(int n,int arr[]){
+	vector<ListNode*> buckets(BUCKET_NUM,(ListNode*)(0));// 存的是每个桶的头节点，一个桶相当于是一个有序链表
+	for(int i=0;i<n;++i){
+		int index = arr[i]/BUCKET_NUM; // 看要将数据放在哪个桶里面
+		ListNode *head = buckets.at(index);// 局部变量
+		buckets.at(index) = insert(head,arr[i]);// 插入桶中
+	}
+	ListNode *head = buckets.at(0); // 初始值是第0个桶
+	for(int i=1;i<BUCKET_NUM;++i){
+		head = Merge(head,buckets.at(i)); // 将两个桶合并
+	}
+	for(int i=0;i<n;++i){
+		arr[i] = head->mData;
+		head = head->mNext;
+	}
+}
+```
+
+
 
 ## explicit关键字
 

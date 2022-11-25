@@ -2,7 +2,7 @@
 /*
  * @Author: hzy
  * @Date: 2022-9-11 16.35
- * @LastEditTime: 2022-11-23 18.18
+ * @LastEditTime: 2022-11-25 16.35
  * @LastEditors: hzy
  */
 ```
@@ -972,7 +972,7 @@ class Ticket implements Runnable{
 
 https://www.liaoxuefeng.com/wiki/1252599548343744/1306580911915042
 
-wait会将这个线程的锁释放掉，this锁。调用了wait之后，其他线程可以使用这个锁
+wait会将这个线程的锁释放掉，this锁。调用了wait之后，其他线程可以使用这个锁，和C++的条件变量类似
 
 在这个教程里，一个添加任务队列的方法，一个是执行任务的方法，如果只是用synchronized关键字把这两个方法锁住，当需要getTask之前，这个线程可以检测任务队列是否为空，为空的话会一直阻塞这个线程；这个时候this就被锁住了，其他线程也不能获得，所以也不能添加任务，然后所有的线程都被锁住了。这个时候可以使用this.wait()方法将这个锁释放掉，这个问题就解决了。
 
@@ -1121,7 +1121,8 @@ public class HelloJDBC {
         String JDBC_USER = "root";
         String JDBC_PASSWORD = "123456";
         try (Connection conn = DriverManager.getConnection(url, JDBC_USER, JDBC_PASSWORD)) {// 先使用DriverManger.getConnection获取连接
-            try (Statement stmt = conn.createStatement()) {// 使用Connection对象创建一个Statment对象
+            try (Statement stmt = conn.createStatement()) {// 使用Connection对象创建一个Statment对象，可能会有SQL注入，
+                // PrepareStatement preStat=conn.prepareStatement();后面相同
                 try (ResultSet rs = stmt.executeQuery("SELECT * FROM admin1")) {// 使用Statment的executeQuery传入Sql语句，返回结果用ResultSet来接受
                     while (rs.next()) {// 反复调用next方法来查询结果集
 //                        long id = rs.getLong(1); // 注意：索引从1开始
