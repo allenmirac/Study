@@ -504,7 +504,7 @@ Matcher有几个常用的方法：find(), matches(), start(), end(), group().
 
 find()：是否存在与该模式匹配的下一个子序列。简单来说就是在**字符某部分匹配上**模式就会返回true，同时匹配位置会记录到当前位置，再次调用时从该处匹配下一个。
 
-matches()：整个字符串是否匹配上模式，匹配上则返回true，否则false。
+matches()：整个字符串是否匹配上模式，匹配上则返回true，否则false。**完全匹配**
 
 Matcher中的start()和end()。start(),点进方法可以看到返回的是上一个匹配项的起始索引，如果没有匹配项将抛出IllegalStateException异常。同理，end()则为结束的索引。
 
@@ -1155,6 +1155,26 @@ https://blog.csdn.net/weixin_44844089/article/details/103594587
 ## javap的使用
 
 https://www.cnblogs.com/baby123/p/10756614.html
+
+## Java的重载和重写
+
+https://www.runoob.com/java/java-override-overload.html
+
+重载发生在：重载(overloading) 是在一个类里面，方法名字相同，而参数不同。返回类型可以相同也可以不同。
+
+重写发生在：重写是子类对父类的允许访问的方法的实现过程进行重新编写, 返回值和形参都不能改变。**即外壳不变，核心重写！**
+
+## split() 方法
+
+https://www.runoob.com/java/java-string-split.html
+
+Declare: public String[] split(String regex, int limit);// limit是个数
+
+Declare: public String[] split(String regex);
+
+
+
+
 
 
 

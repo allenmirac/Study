@@ -85,3 +85,20 @@ PHONY 目标并非实际的文件名：只是在显式请求时执行命令的�
 
 所谓的PHONY这个单词就是伪造的意思，makefile中将.PHONY放在一个目标前就是指明这个目标是伪文件目标，如下：
 .PHONY:clean
+
+## Redefinition of default argument
+
+https://www.codeproject.com/Questions/1226183/Redefinition-of-default-parameter-parameter
+
+The preferred approach is specifying it only in function (or method) *declarations*.
+
+## make: 'server' is up to date.
+
+https://stackoverflow.com/questions/3931741/why-does-make-think-the-target-is-up-to-date
+
+```makefile
+.PHONY: all test clean
+```
+
+*A phony target is one that is not really the name of a file; rather it is just a name for a recipe to be executed when you make an explicit request.*
+
