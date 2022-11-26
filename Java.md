@@ -570,6 +570,12 @@ https://wutao18.github.io/2019/08/15/%E5%A4%A7%E6%95%B0%E8%BF%90%E7%AE%97%E4%B9%
 
 https://www.runoob.com/w3cnote/java-stringtokenizer-intro.html
 
+字符串分词器，和String的split比较相似，有三个重载方法：常用方法里都有Token这个单词
+
+- 1. StringTokenizer(String str) ：指定默认的分隔符，有空格("")、制表符(\t)、换行符(\n)、回车符(\r)。
+- 2. StringTokenizer(String str, String delim) ：用一个指定的分隔符delim。
+- 3. StringTokenizer(String str, String delim, boolean returnDelims) ：用一个指定的分隔符delim，同时，指定是否返回分隔符。
+
 ## ArrayList
 
 ```java
@@ -1102,6 +1108,117 @@ public class test implements Runnable{
         }
     }
 }
+```
+
+交替按序输出1、2的例子：
+
+```java
+package com.JavaCour;
+
+public class ThreadTest{
+    public static void main(String[] args) throws InterruptedException {
+        ThreadTest2 t=new ThreadTest2();
+        ThreadTest2 t2 = new ThreadTest2();//不能创建两个类，因为this锁，不一致
+        for(int i=0; i<7; i++) {
+            t.outA();
+        }
+        for(int i=0; i<7; i++) {
+            t2.outB();
+        }
+//        new Thread(){
+//            @Override
+//            public void run() {
+//                for(int i=0; i<7; i++) {
+//                    try {
+//                        t.outA();
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        }.start();
+//        new Thread(){
+//            @Override
+//            public void run() {
+//                for(int i=0; i<7; i++) {
+//                    try {
+//                        t.outB();
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        }.start();
+
+    }
+}
+class ThreadTest2 extends Thread {
+    @Override
+    public void run() {
+
+    }
+    synchronized void outA() throws InterruptedException {
+        this.notify();
+        System.out.print(1);
+        this.wait(1);
+    }
+    synchronized void outB() throws InterruptedException{
+        this.notify();
+        System.out.println(2);
+        this.wait(1);
+    }
+}
+
+//public class ThreadTest {
+//    // 创建一个将被两个线程同时访问的共享对象
+//    public static Object object = new Object();
+//
+//    // Thread0线程，执行wait()方法
+//    static class Thread0 extends Thread {
+//        @Override
+//        public void run() {
+//            synchronized (object) {
+//                for(int i=1;i<=7;i++){
+//                    object.notifyAll();
+//                    System.out.println(Thread.currentThread().getName() + "---1");
+//                    try {
+//                        object.wait(1);}
+//                    catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        }
+//    }
+//    // Thread1线程，执行notify()方法
+//    static class Thread1 extends Thread {
+//
+//        @Override
+//        public void run() {
+//            synchronized (object) {
+//                for(int i=1;i<=7;i++){
+//                    object.notifyAll();
+//                    System.out.println(Thread.currentThread().getName() + "---2");
+//                    try {
+//                        object.wait(1);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        }
+//    }
+//
+//    // 主线程
+//    public static void main(String[] args) {
+//        Thread0 thread0 = new Thread0();
+//        Thread1 thread1 = new Thread1();
+//        thread0.start();
+//        thread1.start();
+//        System.out.println("over!");
+//    }
+//}
+
 ```
 
 ## JDBC
