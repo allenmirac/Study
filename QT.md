@@ -98,7 +98,7 @@ connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(close()));
 
 * * ```C++
         connect(spinNum, SIGNAL(valueChanged(int)), this, SLOT(addFun(int))
-        ```
+    ```
 
 * 多个信号可以连接同一个槽。
 
@@ -123,6 +123,10 @@ https://www.xinbaoku.com/archive/w9cws6Fx.html
 ## QTcpSocket
 
 https://blog.csdn.net/gongjianbo1992/article/details/107743780
+
+## QUdpSocket
+
+https://hyw-zero.github.io/2019/02/11/Qt%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsocket%E9%80%9A%E4%BF%A1/#1-2-UDP%E9%80%9A%E4%BF%A1%E6%B5%81%E7%A8%8B%E5%9B%BE
 
 
 
