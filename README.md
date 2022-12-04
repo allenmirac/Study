@@ -1451,3 +1451,19 @@ https://developer.huawei.com/consumer/cn/blog/topic/03944795154400320
 
 Mysql connection pool 21.35
 
+## 12-4：星期天
+
+mysql 连接没有成功 10.58
+
+connection Pool 12.33
+
+操作系统 下午，分页以及页面分配算法FIFO and LRU 算法 17.43
+
+阅读，单词、练字 20.55
+
+微机原理 21.45
+
+
+
+
+
