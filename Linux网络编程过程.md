@@ -102,3 +102,164 @@ https://stackoverflow.com/questions/3931741/why-does-make-think-the-target-is-up
 
 *A phony target is one that is not really the name of a file; rather it is just a name for a recipe to be executed when you make an explicit request.*
 
+## 配置MySQL
+
+```
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Current-Root-Password';
+ERROR 1290 (HY000): The MySQL server is running with the --skip-grant-tables option so it cannot execute this statement
+mysql> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Current-Root-Password';
+ERROR 1819 (HY000): Your password does not satisfy the current policy requirements
+mysql> SHOW VARIABLES LIKE 'validate_password%';
++--------------------------------------+--------+
+| Variable_name                        | Value  |
++--------------------------------------+--------+
+| validate_password.check_user_name    | ON     |
+| validate_password.dictionary_file    |        |
+| validate_password.length             | 8      |
+| validate_password.mixed_case_count   | 1      |
+| validate_password.number_count       | 1      |
+| validate_password.policy             | MEDIUM |
+| validate_password.special_char_count | 1      |
++--------------------------------------+--------+
+7 rows in set (0.02 sec)
+
+mysql> set global validate_password_policy=0;
+ERROR 1193 (HY000): Unknown system variable 'validate_password_policy'
+mysql> set global validate_password.policy=0;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> flush privilige;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'privilige' at line 1
+mysql> flush privilege;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'privilege' at line 1
+mysql> flush privileges;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> SHOW VARIABLES LIKE 'validate_password%';
++--------------------------------------+-------+
+| Variable_name                        | Value |
++--------------------------------------+-------+
+| validate_password.check_user_name    | ON    |
+| validate_password.dictionary_file    |       |
+| validate_password.length             | 8     |
+| validate_password.mixed_case_count   | 1     |
+| validate_password.number_count       | 1     |
+| validate_password.policy             | LOW   |
+| validate_password.special_char_count | 1     |
++--------------------------------------+-------+
+7 rows in set (0.01 sec)
+
+mysql> set global validate_password.mixed_case_count=0;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> set global validate_password.number_count=3;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> set global validate_password.special_char_count=0;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SHOW VARIABLES LIKE 'validate_password%';
++--------------------------------------+-------+
+| Variable_name                        | Value |
++--------------------------------------+-------+
+| validate_password.check_user_name    | ON    |
+| validate_password.dictionary_file    |       |
+| validate_password.length             | 8     |
+| validate_password.mixed_case_count   | 0     |
+| validate_password.number_count       | 3     |
+| validate_password.policy             | LOW   |
+| validate_password.special_char_count | 0     |
++--------------------------------------+-------+
+7 rows in set (0.00 sec)
+
+mysql> SET PASSWORD FOR 'root'@'localhost' = PASSWORD('123');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'PASSWORD('123')' at line 1
+mysql> set global validate_password.length=3;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> flush privileges;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> UPDATE mysql.user set authentication_string=PASSWORD('123456') where user='root';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '('123456') where user='root'' at line 1
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY'123456';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> flush privileges;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> flush privileges;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> flush privileges;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> flush privileges;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT user,authentication_string,plugin,host FROM mysql.user;
++------------------+------------------------------------------------------------------------+-----------------------+-----------+
+| user             | authentication_string                                                  | plugin                | host      |
++------------------+------------------------------------------------------------------------+-----------------------+-----------+
+| debian-sys-maint | $A$005$h5m#HFt%H5*.
+LQr*FBEML4ZUeYgCYeB69R4KjDhHb3SXvGJBWzsATyp/rUB | caching_sha2_password | localhost |
+| mysql.infoschema | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED | caching_sha2_password | localhost |
+| mysql.session    | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED | caching_sha2_password | localhost |
+| mysql.sys        | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED | caching_sha2_password | localhost |
+| root             | *6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9                              | mysql_native_password | localhost |
++------------------+------------------------------------------------------------------------+-----------------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> quit
+Bye
+root@ubuntu:/home/mirac/Desktop/Github/WebServer# systemctl stop mysql
+root@ubuntu:/home/mirac/Desktop/Github/WebServer# vim /etc/mysql/mysql.conf.d/mysqld.cnf
+root@ubuntu:/home/mirac/Desktop/Github/WebServer# mysql
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)
+root@ubuntu:/home/mirac/Desktop/Github/WebServer# systemctl start mysql
+root@ubuntu:/home/mirac/Desktop/Github/WebServer# systemctl start mysql
+root@ubuntu:/home/mirac/Desktop/Github/WebServer# systemctl start mysql
+root@ubuntu:/home/mirac/Desktop/Github/WebServer# mysql
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: NO)
+root@ubuntu:/home/mirac/Desktop/Github/WebServer# mysql -u -root -p
+Enter password: 
+ERROR 1045 (28000): Access denied for user '-root'@'localhost' (using password: YES)
+root@ubuntu:/home/mirac/Desktop/Github/WebServer# vim /etc/mysql/mysql.conf.d/mysqld.cnf
+root@ubuntu:/home/mirac/Desktop/Github/WebServer# systemctl restart mysql
+root@ubuntu:/home/mirac/Desktop/Github/WebServer# mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 7
+Server version: 8.0.31-0ubuntu0.20.04.2 (Ubuntu)
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show variables like 'validate_password%';
++--------------------------------------+--------+
+| Variable_name                        | Value  |
++--------------------------------------+--------+
+| validate_password.check_user_name    | ON     |
+| validate_password.dictionary_file    |        |
+| validate_password.length             | 8      |
+| validate_password.mixed_case_count   | 1      |
+| validate_password.number_count       | 1      |
+| validate_password.policy             | MEDIUM |
+| validate_password.special_char_count | 1      |
++--------------------------------------+--------+
+7 rows in set (0.01 sec)
+
+mysql> quit;
+Bye
+root@ubuntu:/home/mirac/Desktop/Github/WebServer# 
+
+```
+
+以上都没有配置成功
