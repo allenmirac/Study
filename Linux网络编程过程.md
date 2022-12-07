@@ -263,3 +263,16 @@ root@ubuntu:/home/mirac/Desktop/Github/WebServer#
 ```
 
 以上都没有配置成功
+
+## Solution for 'ssh: connect to host github.com port 22: Connection timed out' error
+
+https://gist.github.com/Tamal/1cc77f88ef3e900aeae65f0e5e504794
+
+https://docs.github.com/en/authentication/troubleshooting-ssh/using-ssh-over-the-https-port
+
+```git
+git remote -v
+ssh -T git@github.com
+// 改为使用443端口
+```
+
