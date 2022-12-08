@@ -104,7 +104,7 @@ https://stackoverflow.com/questions/3931741/why-does-make-think-the-target-is-up
 
 ## 配置MySQL
 
-```
+```bash
 mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Current-Root-Password';
 ERROR 1290 (HY000): The MySQL server is running with the --skip-grant-tables option so it cannot execute this statement
 mysql> FLUSH PRIVILEGES;
@@ -201,17 +201,6 @@ mysql> flush privileges;
 Query OK, 0 rows affected (0.00 sec)
 
 mysql> SELECT user,authentication_string,plugin,host FROM mysql.user;
-+------------------+------------------------------------------------------------------------+-----------------------+-----------+
-| user             | authentication_string                                                  | plugin                | host      |
-+------------------+------------------------------------------------------------------------+-----------------------+-----------+
-| debian-sys-maint | $A$005$h5m#HFt%H5*.
-LQr*FBEML4ZUeYgCYeB69R4KjDhHb3SXvGJBWzsATyp/rUB | caching_sha2_password | localhost |
-| mysql.infoschema | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED | caching_sha2_password | localhost |
-| mysql.session    | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED | caching_sha2_password | localhost |
-| mysql.sys        | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED | caching_sha2_password | localhost |
-| root             | *6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9                              | mysql_native_password | localhost |
-+------------------+------------------------------------------------------------------------+-----------------------+-----------+
-5 rows in set (0.00 sec)
 
 mysql> quit
 Bye
