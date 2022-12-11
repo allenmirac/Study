@@ -23,7 +23,7 @@
 
 编译过程：
 
-![image-20221113111159344](D:\Github\Study\Java要点.assets\image-20221113111159344.png)
+![image-20221113111159344](Java要点.assets/image-20221113111159344.png)
 
 
 

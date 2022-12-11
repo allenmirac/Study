@@ -8,7 +8,7 @@
 
 还有一个内核空间，但是它不与用户直接交互（内核区）。
 
-<img src="D:\A文档\笔记\C++.assets\image-20221022094243664.png" alt="image-20221022094243664" style="zoom:33%;" />
+<img src="C++.assets/image-20221022094243664.png" alt="image-20221022094243664" style="zoom:33%;" />
 
 #### static
 
