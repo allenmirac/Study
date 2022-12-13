@@ -159,3 +159,6 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 mysql>
 ```
 
+## 【Git】让git忽略所有二进制文件的方法
+
+[如何忽略没有后缀的文件](https://blog.csdn.net/zhangyk11/article/details/124151075#:~:text=%E6%88%91%E4%BB%AC%E5%8F%AA%E9%9C%80%E5%9C%A8.gitignore,%E6%95%B4%E4%B8%AA%E6%96%87%E4%BB%B6%E5%A4%B9%E5%8D%B3%E5%8F%AF%E3%80%82&text=%E5%85%B6%E4%B8%AD%E4%B8%BA%E4%BD%A0%E6%83%B3,push%E7%AD%89%E6%93%8D%E4%BD%9C%E5%8D%B3%E5%8F%AF%E3%80%82)
