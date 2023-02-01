@@ -283,7 +283,7 @@
 
 ```
 
-### 获取元素
+### js获取document的元素
 
 ```html
 <!DOCTYPE html>
@@ -337,6 +337,7 @@
 	<script>
 		//querySelectorAll() 方法  获得class为imp的元素   .不能少
 		var p1 = document.querySelectorAll('.imp')
+        //var ps=document.querySelectorAll("p");/*效果一样*/
 		console.log(p1)
 		//querySelector（）方法   获得id为btn1的元素 #不能少
 		var p2 = document.querySelector('#btn1')
