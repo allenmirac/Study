@@ -1026,6 +1026,8 @@
 </html>
 ```
 
+![image-20230218112728456](JavaScript.assets/image-20230218112728456.png)
+
 ### 定时器
 
 ```html
