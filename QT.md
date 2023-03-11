@@ -35,6 +35,29 @@ greaterThan(Qt_MAJOR_VERSION, 4): Qt += widgets
 
 这是个条件执行语句，表示当 Qt 主版本大于 4 时，才加入 widgets 模块。
 
+```properties
+# Qt是 工程模块变量，引入了 qt的core 和 gui模块
+QT       += core gui
+
+#如果qt版本号大于4，就引入widgets模块
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+
+#指定目标，生成可执行程序的名字.exe
+TARGET = 01_hello
+#模板，生成什么文件，app表示应用程序exe,lib 就是生成库
+TEMPLATE = app
+
+# The following define makes your compiler emit warnings if you use
+# any feature of Qt which has been marked as deprecated (the exact warnings
+# depend on your compiler). Please consult the documentation of the
+# deprecated API in order to know how to port your code away from it.'
+# 如果你用了过时的api，就会报warning
+DEFINES += QT_DEPRECATED_WARNINGS
+```
+
+
+
 ### .ui 文件详解
 
 https://www.xinbaoku.com/archive/8yc8sMF5.html
@@ -75,6 +98,10 @@ https://www.cnblogs.com/QG-whz/p/4995938.html
 
 **信号与槽机制实际上都是函数，当一个事件触发之后，会发送一个信号，与这个信号连接的槽函数接受这个信号之后，作出反应。**
 
+> 信号：各种事件
+>
+> 槽：响应信号的动作
+
 **没有使用C++的回调函数的原因是C++这种方法不是类型安全的，所以QT采用了信号与槽这种类型安全的方式。**
 
 信号与槽关联是用 QObject::connect() 函数实现的，其基本格式是：
@@ -82,6 +109,20 @@ https://www.cnblogs.com/QG-whz/p/4995938.html
 ```c++
 QObject::connect(sender, SIGNAL(signal()), receiver, SLOT(slot()));
 ```
+
+conncet(信号发送者，信号，信号接收者，槽)
+
+
+
+connect里边4个参数都是指针
+
+```c++
+connect(btn,&QPushButton::clicked,this,&Widget::hide);
+```
+
+使用connect的时候保留&符号
+    1 提高代码可读性
+    2 自动提示
 
 connect() 是 QObject 类的一个静态函数，而 QObject 是所有 Qt 类的基类，在实际调用时可以忽略前面的限定符，所以可以直接写为：
 
@@ -106,6 +147,42 @@ connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(close()));
 
 * 在使用信号与槽的类中，必须在类的定义中加入宏 Q_OBJECT。
 
+
+
+### 自定义信号和槽
+
+​	自定义信号
+​		1 函数声明在类头文件的signals 域下面
+​		2 void 类型的函数，没有返回值
+​		3 可以有参数，也可以重载
+​		4 只有声明，没有实现定义
+​		5 触发信号 emit obj->sign(参数...)
+
+自定义槽
+	1 函数声明在类头文件的public/private/protected slots域下面（qt4以前的版本）
+		qt5 就可以声明在类的任何位置，还可以是静态成员函数、全局函数、lambda表达式
+	2 void 类型的函数，没有返回值
+	3 可以有参数，也可以重载
+	4 不仅有声明，还得有实现
+	
+场景：下课了，老师说他饿了，学生就请吃饭
+	信号发送者：老师
+	信号：老师饿了
+	信号接收者：学生
+	槽：请吃饭
+创多少个类：Teacher Student
+信号： hungry 1个 Teacher
+槽：treat 1个 Student 	
+
+带参数的自定义信号和槽，就声明函数的时候就带上参数就行
+老师说他饿了，说要吃黄焖鸡，学生就请吃黄焖鸡
+
+调用带参数的信号函数 emit pTeacher->hungry("黄焖鸡");
+
+参数二义性问题：
+	1 使用函数指针赋值，让编译器自动挑选符合类型的函数
+	2 使用static_cast 强制转换 ，让编译器自动挑选符合类型的函数	
+
 ## Qt纯代码设计UI实例分析
 
 https://www.xinbaoku.com/archive/K6cKs9FE.html
@@ -116,7 +193,76 @@ https://www.xinbaoku.com/archive/K6cKs9FE.html
 
 https://www.xinbaoku.com/archive/w9cws6Fx.html
 
+ctrl+i，对齐
+
+ctrl+/，注释
+
+F1			帮助文档
+
+F4			头文件和源文件之间跳转
+
 快捷键。
+
+## QT父子关系
+
+```c++
+    //添加按钮 会在顶层显示
+    //    QPushButton btn;
+    //    btn.setText("按钮1");
+    //    //将按钮显示出来
+    //    btn.show();
+
+
+    //默认情况下没有建立父子关系，显示的都是顶层窗口
+    //要建立父子关系
+
+    //1 setParent函数
+    QPushButton btn;
+    btn.setText("按钮1");
+    btn.setParent(&w);
+
+    //2 构造函数传参
+    QPushButton btn2("按钮2",&w);
+    //移动以下按钮位置
+    btn2.move(100,100);
+    //重新设置窗口大小
+    btn2.resize(400,400);
+
+    //按钮3，和按钮2建立父子关系
+    QPushButton btn3("按钮3",&btn2);
+    btn3.move(100,100);
+    //设置窗口标题
+    w.setWindowTitle("HelloWorld");
+
+
+    //设置窗口的固定大小
+	//w.setFixedSize(800,600);
+    //同时设置窗口对的位置和大小
+    w.setGeometry(400,400,500,500);
+    w.show();
+    //顶层窗口移动到200,100
+	//w.move(200,100);
+```
+
+## QT常用API
+
+move 移动窗口到父窗口某个坐标
+resize 重新设置窗口的大小
+setFixedSize 设置窗口的固定大小
+setWindowTitle 设置窗口标题
+setGeometry 同时设置窗口位置和大小，相当于move和resize的结合体
+
+# 对象树
+
+概念：各个窗口对象通过建立父子关系构造的一个关系树
+内存管理：
+		父对象释放的时候会自动释放各个子对象（使用children列表，自动添加孩子）
+以后基本都是用new的方式来创建窗口对象
+注意点：
+	1 父对象能够被释放
+	2 父对象、子对象，直接或者间接继承自QObject
+
+
 
 # QTNetwork
 
@@ -129,4 +275,16 @@ https://blog.csdn.net/gongjianbo1992/article/details/107743780
 https://hyw-zero.github.io/2019/02/11/Qt%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsocket%E9%80%9A%E4%BF%A1/#1-2-UDP%E9%80%9A%E4%BF%A1%E6%B5%81%E7%A8%8B%E5%9B%BE
 
 
+
+# Qt 的元对象系统
+
+Qt 的元对象系统（Meta-Object System）提供了对象之间通信的信号与槽机制、运行时类型信息和动态属性系统。
+
+元对象系统由以下三个基础组成：
+
+1. QObject 类是所有使用元对象系统的类的基类。
+2. 在一个类的 private 部分**声明 Q_OBJECT宏**，使得类可以使用元对象的特性，如动态属性、信号与槽。
+3. MOC（元对象编译器）为每个 QObject 的子类提供必要的代码来实现元对象系统的特性。
+
+构建项目时，MOC 工具读取 C++ 源文件，当它发现类的定义里有 Q_OBJECT 宏时，它就会为这个类生成另外一个包含有元对象支持代码的 C++ 源文件，这个生成的源文件连同类的实现文件一起被编译和连接。
 
