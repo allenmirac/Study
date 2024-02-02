@@ -76,7 +76,7 @@ select * from tb_brand
 
 ### **session.setAttribute**
 
-setAttribute这个方法，在JSP对象中的session和request都有这个方法，这个方法作用就是保存数据，然后还可以用getAttribute方法来获取出来。request作用域中，然后在**转发进入的页面**就可以获取到你的值，如：request.setAttribute("users",users)这个方法是将users这个对象保存在request作用域中，然后在跳转的界面就可以使用users对象。
+这个方法，在JSP对象中的session和request都有这个方法，这个方法作用就是保存数据，然后还可以用getAttribute方法来获取出来。request作用域中，然后在**转发进入的页面**就可以获取到你的值，如：request.setAttribute("users",users)这个方法是将users这个对象保存在request作用域中，然后在跳转的界面就可以使用users对象。
 
 ### java Web 工程servlet中@WebServlet("/HelloServlet") 是怎么工作的
 
