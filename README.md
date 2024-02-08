@@ -1610,3 +1610,7 @@ c++ 继承和多态视频 22.34
 集群聊天的 `testMysqlConnectionPool`的`CMakeLists.txt`编写 21.50
 
 测试Mysql Pool 没有成功 23.11
+
+## 2-6：星期二
+
+写了几个算法题，然后改项目 bug ，测试Mysql Pool 成功了，明天可以继续听网课了 0.37
